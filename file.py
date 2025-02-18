@@ -1,0 +1,7 @@
+file=open('example.txt',"r")
+# content1=file.readline()
+# content2=file.readline()
+# print(content1)
+# print(content2)
+lines=file.readlines()
+print(lines)
