@@ -5,7 +5,7 @@ PythonDataScienceHandbook,46054,18608,Jupyter Notebook,Python Data Science Handb
 Data-Science-For-Beginners,31377,6611,Jupyter Notebook,"10 Weeks, 20 Lessons, Data Science for All!"
 tqdm,30693,1410,Python,":zap: A Fast, Extensible Progress Bar for Python and CLI"
 data-science-ipython-notebooks,28704,8040,Python,"Data science Python notebooks: Deep learning (TensorFlow, Theano, Caffe, Keras), scikit-learn, Kaggle, big data (Spark, Hadoop MapReduce, HDFS), matplotlib, pandas, NumPy, SciPy, Python essentials, AWS, and various command lines."
-pandas-ai,22628,2214,Python,"Chat with your database or your datalake (SQL, CSV, parquet). PandasAI makes data analysis conversational using LLMs and RAG."
+pandas-ai,22629,2214,Python,"Chat with your database or your datalake (SQL, CSV, parquet). PandasAI makes data analysis conversational using LLMs and RAG."
 datasets,20888,3018,Python,"🤗 The largest hub of ready-to-use datasets for AI models with fast, easy-to-use and efficient data manipulation tools"
 yfinance,19934,2908,Python,Download market data from Yahoo! Finance's API
 pygwalker,15441,846,Python,PyGWalker: Turn your dataframe into an interactive UI for visual analysis
