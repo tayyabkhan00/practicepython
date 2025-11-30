@@ -41,3 +41,8 @@ def twoSum(nums, target):
             return [nums.index(complement), i]
         seen.add(num)
 print(twoSum([2, 7, 11, 15], 9))
+
+# 5. Using List Comprehension (Concise but Less Efficient — O(n²))
+def twoSum(nums, target):
+    return next(([i, j] for i in range(len(nums)) for j in range(i + 1, len(nums)) if nums[i] + nums[j] == target), None)
+print(twoSum([2, 7, 11, 15], 9))
