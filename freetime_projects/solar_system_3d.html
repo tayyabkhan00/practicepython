@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>3D Solar System Animation</title>
+<style>
+  body {
+    margin: 0;
+    background: black;
+    overflow: hidden;
+    perspective: 1000px;
+  }
+
+  .space {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotateScene 40s linear infinite;
+  }
+
+  @keyframes rotateScene {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+  }
+
+  .sun {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 100px; height: 100px;
+    background: radial-gradient(circle, yellow, orange, red);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 50px yellow;
+  }
+
+  .orbit {
+    position: absolute;
+    top: 50%; left: 50%;
+    border: 1px dashed rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transform-style: preserve-3d;
+  }
+
+  .planet {
+    position: absolute;
+    top: 50%; left: 50%;
+    border-radius: 50%;
+    transform-style: preserve-3d;
+    animation: spinPlanet linear infinite;
+  }
+
+  @keyframes spinPlanet {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+  }
+
+  /* Mercury */
+  #orbit-mercury { width: 200px; height: 200px; animation: spin 10s linear infinite; }
+  #mercury { width: 12px; height: 12px; background: gray; transform: translate(100px, -6px); }
+
+  /* Venus */
+  #orbit-venus { width: 280px; height: 280px; animation: spin 16s linear infinite; }
+  #venus { width: 16px; height: 16px; background: gold; transform: translate(140px, -8px); }
+
+  /* Earth */
+  #orbit-earth { width: 360px; height: 360px; animation: spin 20s linear infinite; }
+  #earth { width: 20px; height: 20px; background: blue; transform: translate(180px, -10px); }
+
+  /* Moon */
+  #moon-orbit-earth {
+    width: 50px; height: 50px;
+    position: absolute;
+    top: -25px; left: 200px;
+    border: 1px dashed rgba(255,255,255,0.2);
+    border-radius: 50%;
+    animation: spin 4s linear infinite;
+  }
+  #moon-earth { width: 8px; height: 8px; background: white; border-radius: 50%; transform: translate(25px, -4px); }
+
+  /* Mars */
+  #orbit-mars { width: 440px; height: 440px; animation: spin 30s linear infinite; }
+  #mars { width: 18px; height: 18px; background: red; transform: translate(220px, -9px); }
+
+  @keyframes spin {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+  }
+
+</style>
+</head>
+<body>
+  <div class="space">
+    <div class="sun"></div>
+
+    <div id="orbit-mercury" class="orbit"><div id="mercury" class="planet"></div></div>
+    <div id="orbit-venus" class="orbit"><div id="venus" class="planet"></div></div>
+    <div id="orbit-earth" class="orbit">
+      <div id="earth" class="planet"></div>
+      <div id="moon-orbit-earth"><div id="moon-earth" class="moon"></div></div>
+    </div>
+    <div id="orbit-mars" class="orbit"><div id="mars" class="planet"></div></div>
+  </div>
+</body>
+</html>
