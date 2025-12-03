@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Solar System</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #000;
+        }
+        canvas {
+            display: block;
+        }
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="info">
+        Click and drag to rotate | Scroll to zoom
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        let scene, camera, renderer;
+        let sun, planets = [], moons = [];
+        let isDragging = false, previousMousePosition = { x: 0, y: 0 };
+        let cameraRotation = { x: 0.5, y: 0 };
+        let cameraDistance = 150;
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+            camera.position.set(0, 50, 150);
+            camera.lookAt(0, 0, 0);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0x333333);
+            scene.add(ambientLight);
+
+            const sunLight = new THREE.PointLight(0xffffff, 2, 1000);
+            scene.add(sunLight);
+
+            // Sun
+            const sunGeometry = new THREE.SphereGeometry(5, 32, 32);
+            const sunMaterial = new THREE.MeshBasicMaterial({ 
+                color: 0xfdb813,
+                emissive: 0xfdb813,
+                emissiveIntensity: 1
+            });
+            sun = new THREE.Mesh(sunGeometry, sunMaterial);
+            scene.add(sun);
+
+            // Add sun glow
+            const glowGeometry = new THREE.SphereGeometry(6, 32, 32);
+            const glowMaterial = new THREE.MeshBasicMaterial({
+                color: 0xff8800,
+                transparent: true,
+                opacity: 0.3
+            });
+            const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+            sun.add(glow);
+
+            // Create planets
+            createPlanet('Mercury', 0.4, 0x8c7853, 10, 0.02, 0);
+            createPlanet('Venus', 0.9, 0xffc649, 15, 0.015, 0);
+            const earth = createPlanet('Earth', 1, 0x4a90e7, 20, 0.01, 23.5);
+            createMoon(earth, 0.27, 0xaaaaaa, 2, 0.05);
+            
+            const mars = createPlanet('Mars', 0.5, 0xe27b58, 25, 0.008, 25);
+            createMoon(mars, 0.15, 0xaaaaaa, 1.2, 0.08);
+            createMoon(mars, 0.12, 0xaaaaaa, 1.6, 0.06);
+
+            const jupiter = createPlanet('Jupiter', 3, 0xc88b3a, 35, 0.005, 3);
+            createMoon(jupiter, 0.3, 0xffcc66, 5, 0.04);
+            createMoon(jupiter, 0.25, 0xcccccc, 5.5, 0.035);
+            createMoon(jupiter, 0.35, 0xaaaaaa, 6, 0.03);
+            createMoon(jupiter, 0.3, 0x999999, 6.5, 0.025);
+
+            const saturn = createPlanet('Saturn', 2.5, 0xf4e4c1, 50, 0.004, 27);
+            createRing(saturn, 3.5, 5.5, 0xd2b48c);
+            createMoon(saturn, 0.4, 0xffcc99, 7, 0.03);
+            createMoon(saturn, 0.25, 0xcccccc, 6, 0.04);
+
+            const uranus = createPlanet('Uranus', 1.8, 0x4fd0e7, 65, 0.003, 98);
+            createMoon(uranus, 0.2, 0xaaaaaa, 4, 0.035);
+            createMoon(uranus, 0.2, 0x999999, 4.5, 0.03);
+
+            const neptune = createPlanet('Neptune', 1.7, 0x4169e1, 80, 0.002, 28);
+            createMoon(neptune, 0.25, 0xcccccc, 4, 0.04);
+
+            // Mouse controls
+            renderer.domElement.addEventListener('mousedown', onMouseDown);
+            renderer.domElement.addEventListener('mousemove', onMouseMove);
+            renderer.domElement.addEventListener('mouseup', onMouseUp);
+            renderer.domElement.addEventListener('wheel', onWheel);
+
+            window.addEventListener('resize', onWindowResize);
+        }
+
+        function createPlanet(name, size, color, distance, speed, tilt) {
+            const geometry = new THREE.SphereGeometry(size, 32, 32);
+            const material = new THREE.MeshStandardMaterial({ 
+                color: color,
+                roughness: 0.8,
+                metalness: 0.2
+            });
+            const planet = new THREE.Mesh(geometry, material);
+            
+            const container = new THREE.Object3D();
+            container.add(planet);
+            planet.position.x = distance;
+            
+            const orbitContainer = new THREE.Object3D();
+            orbitContainer.add(container);
+            orbitContainer.rotation.z = tilt * Math.PI / 180;
+            scene.add(orbitContainer);
+
+            // Create orbit line
+            const orbitGeometry = new THREE.BufferGeometry();
+            const orbitPoints = [];
+            for (let i = 0; i <= 64; i++) {
+                const angle = (i / 64) * Math.PI * 2;
+                orbitPoints.push(
+                    Math.cos(angle) * distance,
+                    0,
+                    Math.sin(angle) * distance
+                );
+            }
+            orbitGeometry.setAttribute('position', new THREE.Float32BufferAttribute(orbitPoints, 3));
+            const orbitMaterial = new THREE.LineBasicMaterial({ 
+                color: 0x444444,
+                transparent: true,
+                opacity: 0.3
+            });
+            const orbitLine = new THREE.Line(orbitGeometry, orbitMaterial);
+            orbitContainer.add(orbitLine);
+
+            planets.push({ 
+                container: orbitContainer,
+                planet: planet,
+                speed: speed,
+                angle: Math.random() * Math.PI * 2
+            });
+
+            return container;
+        }
+
+        function createMoon(planetContainer, size, color, distance, speed) {
+            const geometry = new THREE.SphereGeometry(size, 16, 16);
+            const material = new THREE.MeshStandardMaterial({ 
+                color: color,
+                roughness: 0.9
+            });
+            const moon = new THREE.Mesh(geometry, material);
+            moon.position.x = distance;
+
+            const moonContainer = new THREE.Object3D();
+            moonContainer.add(moon);
+            planetContainer.add(moonContainer);
+
+            moons.push({
+                container: moonContainer,
+                speed: speed,
+                angle: Math.random() * Math.PI * 2
+            });
+
+            return moon;
+        }
+
+        function createRing(planetContainer, innerRadius, outerRadius, color) {
+            const geometry = new THREE.RingGeometry(innerRadius, outerRadius, 64);
+            const material = new THREE.MeshBasicMaterial({ 
+                color: color,
+                side: THREE.DoubleSide,
+                transparent: true,
+                opacity: 0.6
+            });
+            const ring = new THREE.Mesh(geometry, material);
+            ring.rotation.x = Math.PI / 2;
+            planetContainer.children[0].add(ring);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Rotate sun
+            sun.rotation.y += 0.001;
+
+            // Animate planets
+            planets.forEach(p => {
+                p.angle += p.speed;
+                p.container.rotation.y = p.angle;
+            });
+
+            // Animate moons
+            moons.forEach(m => {
+                m.angle += m.speed;
+                m.container.rotation.y = m.angle;
+            });
+
+            // Update camera position
+            const x = Math.sin(cameraRotation.y) * cameraDistance;
+            const y = Math.sin(cameraRotation.x) * cameraDistance;
+            const z = Math.cos(cameraRotation.y) * cameraDistance;
+            camera.position.set(x, y, z);
+            camera.lookAt(0, 0, 0);
+
+            renderer.render(scene, camera);
+        }
+
+        function onMouseDown(e) {
+            isDragging = true;
+            previousMousePosition = { x: e.clientX, y: e.clientY };
+        }
+
+        function onMouseMove(e) {
+            if (isDragging) {
+                const deltaX = e.clientX - previousMousePosition.x;
+                const deltaY = e.clientY - previousMousePosition.y;
+                
+                cameraRotation.y += deltaX * 0.005;
+                cameraRotation.x += deltaY * 0.005;
+                
+                cameraRotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, cameraRotation.x));
+                
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            }
+        }
+
+        function onMouseUp() {
+            isDragging = false;
+        }
+
+        function onWheel(e) {
+            e.preventDefault();
+            cameraDistance += e.deltaY * 0.05;
+            cameraDistance = Math.max(50, Math.min(300, cameraDistance));
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        init();
+        animate();
+    </script>
+</body>
+</html>
