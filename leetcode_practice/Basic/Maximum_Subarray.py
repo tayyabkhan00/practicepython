@@ -12,6 +12,7 @@ def maxSubArray(nums):
 print(maxSubArray(nums))  # Output: 6)
 # complexity O(n)
 
+
 # ---------------- EXTENDED FUNCTIONALITY ---------------- #
 
 def maxSubArray(nums):

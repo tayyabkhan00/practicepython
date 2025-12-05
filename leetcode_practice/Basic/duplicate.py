@@ -1,3 +1,4 @@
+# hash map approach
 nums = [1, 2, 3, 1]
 def containsDuplicate(nums):
     seen = set()              # 1
@@ -10,6 +11,8 @@ def containsDuplicate(nums):
     
     return False              # 6
 print(containsDuplicate(nums))  # Output: True
+# complexity O(n)
+
 
 # brute force approach
 def containsDuplicate(nums):
@@ -18,3 +21,4 @@ def containsDuplicate(nums):
             if nums[i] == nums[j]:          # if any match found
                 return True                 # duplicate exists
     return False                             # no duplicates found
+# complexity O(n^2)
