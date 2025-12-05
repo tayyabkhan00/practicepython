@@ -10,6 +10,7 @@ def maxSubArray(nums):
     return max_sum            # 6
 
 print(maxSubArray(nums))  # Output: 6)
+# complexity O(n)
 
 # ---------------- EXTENDED FUNCTIONALITY ---------------- #
 
@@ -34,6 +35,7 @@ def maxSubArray(nums):
             end = i
 
     return max_sum, nums[best_start:end+1]   # return sum and the actual subarray
+# complexity O(n)
 
 
 # ---------------- USER INPUT SECTION ---------------- #
@@ -45,3 +47,19 @@ max_sum, subarray = maxSubArray(nums)
 
 print("Maximum Subarray Sum:", max_sum)
 print("Maximum Subarray:", subarray)
+
+
+# brute force approach
+arr = [1, -3, 2, 1, -1]
+
+max_sum = float('-inf')
+
+for i in range(len(arr)):                 # start of subarray
+    for j in range(i, len(arr)):          # end of subarray
+        sub_sum = sum(arr[i:j+1])         # sum of arr[i..j]
+        
+        if sub_sum > max_sum:             # update max
+            max_sum = sub_sum
+
+print(max_sum)
+# complexity O(n^3)

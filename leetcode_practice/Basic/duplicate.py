@@ -10,3 +10,11 @@ def containsDuplicate(nums):
     
     return False              # 6
 print(containsDuplicate(nums))  # Output: True
+
+# brute force approach
+def containsDuplicate(nums):
+    for i in range(len(nums)):              # pick one number
+        for j in range(i + 1, len(nums)):   # compare with all numbers after it
+            if nums[i] == nums[j]:          # if any match found
+                return True                 # duplicate exists
+    return False                             # no duplicates found
