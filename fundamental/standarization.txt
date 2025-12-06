@@ -264,18 +264,43 @@ let be have numbers:2,4,6,8,10
 
 2                        -4                         16
 4                        -2                          4
-6     ------mean(6)-------0------square(x-mean)------0--------mean(7.2)-------sqrt(7.2)=std
+6     ------mean(6)-------0------square(x-mean)------0--------mean(7.2)-------sqrt(7.2)=std(2.68)
 8                         2                          4
 10                        4                         16
 
-x-mean:
+x-mean:Variance
 {
-2-6=-4
-4-6=-2
-6-6=0
-8-6=2
-10-6=4
+2-6=-4^2=8
+4-6=-2^2=4
+6-6=0^2=0
+8-6=2^2=4
+10-6=4^2=16
 }
 
 z=x-mean/std
 
+
+🧠 Key Insight
+
+Standardization does NOT care about:
+starting point
+size of numbers
+units (cm, m, kg)
+
+It ONLY cares about:
+pattern
+relative spacing
+how values increase or decrease
+Since both arrays follow the same pattern,
+they produce the same Z-scores.
+
+🔥 Final Answer
+⭐ Yes, standardization follows the sequence pattern,
+not the actual numbers.
+
+If two arrays have:
+✔ same shape
+✔ same spacing
+✔ just scaled versions of each other
+
+→ Their standardized results will ALWAYS be identical.

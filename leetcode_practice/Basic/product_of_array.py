@@ -13,3 +13,22 @@ def productExceptSelf(nums):
         suffix *= nums[i]           # 9
 
     return result                   # 10
+# optimized approach (O(n) time complexity and O(1) space complexity)
+
+
+# brute-force approach (O(n^2) time complexity)
+
+def productExceptSelf(nums):
+    result = []
+
+    for i in range(len(nums)):         # choose the index to skip
+        product = 1
+
+        for j in range(len(nums)):     # multiply all other numbers
+            if j != i:                 # skip the current index
+                product *= nums[j]
+
+        result.append(product)         # store the answer
+
+    return result
+

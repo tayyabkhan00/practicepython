@@ -1,0 +1,94 @@
+⭐ 1. What is Slope (m)?
+
+Slope tells how fast y changes when x changes.
+Simple school meaning:
+If you walk up a hill:
+Small slope → gentle hill
+Large slope → steep hill
+Negative slope → going downhill
+
+Formula you learned:
+m = rise / run = change in y / change in x
+
+In Linear Regression:
+We don’t have just 2 points…
+We have many points.
+So we use:
+m = Σ[(x - mean_x)*(y - mean_y)] / Σ[(x - mean_x)^2]
+
+This means:
+If x increases, how much does y increase on average?
+
+Example meaning:
+If m = 1.2
+→ Every time x increases by 1, y increases by 1.2.
+
+⭐ 2. What is Intercept (c)?
+
+Intercept is:
+➡️ Where the line touches the y-axis
+➡️ Value of y when x = 0
+
+Formula:
+c = mean_y - m * mean_x
+
+Simple meaning:
+If someone starts at x = 0, what is their starting y value?
+
+Example:
+If c = 2.5
+→ When x = 0, y = 2.5
+
+⭐ 3. What are Predictions (y_pred)?
+
+Once you have slope (m) and intercept (c), the line equation is:
+y = m*x + c
+
+Linear regression basically draws the best-fitting straight line through your data.
+Example:
+If:
+m = 1.2
+c = 2
+And you want to predict y for x = 4:
+y = 1.2 * 4 + 2 = 6.8
+
+So prediction means:
+📌 Using the best-fitting line to guess the output.
+
+⭐ 4. What is MSE (Mean Squared Error)?
+
+After predicting, we want to check:
+👉 How far are our predictions from real values?
+👉 Lower MSE = Better model
+
+Formula:
+MSE = mean( (y - y_pred)² )
+
+Break it down:
+Difference (error):
+y - y_pred
+
+Square it (so negatives don’t cancel):
+Take average of all squared errors.
+
+Example:
+If real y = [3, 5]
+And predicted y = [2, 6]
+
+Errors:
+(3-2)² = 1
+(5-6)² = 1
+
+MSE:
+(1 + 1) / 2 = 1
+
+Meaning:
+Lower MSE → Line fits the data well
+Higher MSE → Line is far from the points
+
+🎯 SUPER SIMPLE SUMMARY (Like School)
+Concept	Simple Meaning	Linear Regression Meaning
+Slope (m)	Steepness of line	How much y changes when x changes
+Intercept (c)	Where line hits y-axis	y value when x = 0
+Prediction (y_pred)	Using line to find y for any x	Model guess
+MSE	Avg mistake	How bad the predictions are
