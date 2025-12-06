@@ -1,0 +1,14 @@
+What is sklearn? (Super Easy Explanation)
+Imagine sklearn as a magic toolbox 🧰 for Machine Learning.
+You tell it:
+“Hey sklearn, use this algorithm on this data.”
+And sklearn says:
+“Okay! I trained the model. Want to predict something?”
+That’s it.
+You don’t code algorithms yourself — sklearn does everything.
+
+Every single sklearn model follows this simple pattern:
+1️⃣ Import the model
+2️⃣ Create the model
+3️⃣ Train (fit) the model
+4️⃣ Predict using the model
