@@ -50,3 +50,39 @@ Binary classification	Sigmoid
 Hidden layers	        ReLU
 RNN/LSTM networks	    Tanh
 Multiclass output	    Softmax
+
+Try calculating manually:
+If x = -3, -1, 0, 2, find:
+Sigmoid(x)
+ReLU(x)
+Tanh(x)
+
+✅ 1. ReLU(x) = max(0, x)
+      x	        ReLU(x)
+     -3	          0
+     -1	          0
+      0           0
+      2	          2
+
+✅ 2. Sigmoid(x) = 1 / (1 + e⁻ˣ)
+Approx values:
+x	Sigmoid(x)
+-3	0.047
+-1	0.268
+0	0.500
+2	0.881
+
+✅ 3. Tanh(x) = (eˣ - e⁻ˣ) / (eˣ + e⁻ˣ)
+Approx values:
+x	Tanh(x)
+-3	-0.995
+-1	-0.761
+0	0.000
+2	0.964
+
+🎉 Final Answers Summary
+x	Sigmoid(x)	ReLU(x)	    Tanh(x)
+-3	 0.047	     0	        -0.995
+-1	 0.268	     0	        -0.761
+0	 0.500	     0	         0.000
+2	 0.881	     2	         0.964

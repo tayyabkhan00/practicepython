@@ -1,0 +1,67 @@
+🧠 Loss Functions 
+
+A loss function tells the neural network how wrong it is.
+During training:
+The network makes a prediction
+Loss function compares prediction vs correct answer
+If prediction is wrong → loss is high
+If prediction is correct → loss is low
+Backpropagation uses this loss to adjust weights
+Loss = “how bad is your prediction?”
+Lower loss = better model.
+
+⭐ The 3 Most Important Loss Functions
+1️⃣ MSE — Mean Squared Error
+Used for → Regression (predicting numbers)
+Formula:
+MSE = average((prediction - actual)^2)
+Idea:
+Square the errors so big mistakes are punished more.
+Example:
+Predictions: [4, 5]
+Actual: [3, 3]
+Errors:
+(4–3)² = 1
+(5–3)² = 4
+MSE = (1 + 4) / 2 = 2.5
+2️⃣ Binary Cross Entropy (BCE):
+Used for → Binary Classification
+Examples:
+spam / not spam
+dog / not dog
+positive / negative
+Formula (you don’t need to memorize):
+loss = - [ y*log(p) + (1-y)*log(1-p) ]
+Intuition:
+If model predicts correctly → small loss
+If model is confident but wrong → HUGE loss
+Example:
+Actual (y) = 1
+Predicted probability (p) = 0.9
+Loss = very small → good
+If p = 0.1 → loss huge → bad
+3️⃣ Categorical Cross Entropy (CCE)
+Used for → Multi-class classification
+Examples:
+10 digits (MNIST)
+ImageNet 1000 classes
+News topics (sports, politics, tech…)
+Works with Softmax.
+Example:
+True class = “cat”
+Model outputs:
+cat → 0.80  
+dog → 0.15  
+cow → 0.05
+Loss = low (good)
+If model predicted:
+cat → 0.05  
+dog → 0.60  
+cow → 0.35
+Loss = high (bad)
+
+⭐ Table Summary (Very Important)
+Task	                     Loss Function	             Output Activation
+Regression	                 MSE	                        Linear
+Binary classification	     Binary Cross Entropy	        Sigmoid
+Multi-class classification	 Categorical Cross Entropy	    Softmax
