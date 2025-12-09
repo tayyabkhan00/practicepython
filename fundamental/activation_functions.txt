@@ -1,0 +1,52 @@
+🧠 TOPIC 2 — Activation Functions:
+
+Activation functions decide whether a neuron should fire or not.
+They add non-linearity so neural networks can learn complex patterns.
+Without them → your neural network becomes just linear regression.
+
+⭐ 1. Sigmoid:
+Used for: Binary classification (Yes/No, True/False)
+Range:
+0 → 1
+Idea:
+Turns numbers into probabilities.
+Formula:
+output = 1 / (1 + e^(-x))
+Visual meaning:
+Large positive → close to 1
+Large negative → close to 0
+
+⭐ 2. ReLU (Rectified Linear Unit)
+Used in: Almost every modern neural network (CNNs especially)
+Range:
+0 → ∞
+Formula:
+ReLU(x) = max(0, x)
+Idea:
+If value < 0 → becomes 0
+If value > 0 → stays same
+Why used so much?
+✔ Fast
+✔ Prevents vanishing gradients
+✔ Gives better performance
+
+⭐ 3. Tanh (Hyperbolic Tangent)
+Used in: RNNs, LSTMs
+Range:
+-1 → 1
+Better than sigmoid because outputs are centered around 0.
+
+⭐ 4. Softmax
+Used for: Multiclass classification
+Example: classify image into 10 classes.
+What it does:
+Turns numbers → probabilities that add to 1.
+Example:
+[2.1, 1.0, 0.1] → [0.70, 0.25, 0.05]
+
+⭐ When to use which?
+Task	                Activation
+Binary classification	Sigmoid
+Hidden layers	        ReLU
+RNN/LSTM networks	    Tanh
+Multiclass output	    Softmax
