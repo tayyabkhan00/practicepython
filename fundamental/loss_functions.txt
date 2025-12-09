@@ -61,7 +61,8 @@ cow → 0.35
 Loss = high (bad)
 
 ⭐ Table Summary (Very Important)
-Task	                     Loss Function	             Output Activation
-Regression	                 MSE	                        Linear
-Binary classification	     Binary Cross Entropy	        Sigmoid
-Multi-class classification	 Categorical Cross Entropy	    Softmax
+Task	                     Loss Function	             Output Activation        PyTorch Function
+Regression	                 MSE	                        Linear                 nn.MSELoss()
+Binary classification	     Binary Cross Entropy	        Sigmoid                nn.BCELoss()
+Multi-class classification	 Categorical Cross Entropy	    Softmax                nn.CrossEntropyLoss()
+
