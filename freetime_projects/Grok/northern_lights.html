@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3D Northern Lights with Three.js</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
+    </style>
+    <script src="https://threejs.org/build/three.js"></script>
+</head>
+<body>
+    <script>
+        // Scene setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
+        camera.position.set(0, 0, -3); // Position camera outside the volume
+
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Uniforms
+        const uniforms = {
+            speed: { value: 0.01 },
+            color: { value: new THREE.Vector3(0.2, 0.8, 0.5) }, // Greenish
+            emission_strength: { value: 5.0 },
+            offset: { value: 0.0 },
+            smoothness: { value: 0.15 },
+            distort: { value: 1.0 },
+            scale: { value: 0.02 },
+            STEP: { value: 0.01 },
+            BASE_DENSITY: { value: 2.0 },
+            time: { value: 0.0 }
+        };
+
+        // Vertex Shader
+        const vertexShader = `
+            varying vec3 camera_position;
+            varying vec3 vertex_position;
+
+            void main() {
+                vertex_position = position;
+                camera_position = (inverse(modelMatrix) * vec4(cameraPosition, 1.0)).xyz;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            }
+        `;
+
+        // Fragment Shader (adapted from Godot shader)
+        const fragmentShader = `
+            uniform float speed;
+            uniform vec3 color;
+            uniform float emission_strength;
+            uniform float offset;
+            uniform float smoothness;
+            uniform float distort;
+            uniform float scale;
+            uniform float STEP;
+            uniform float BASE_DENSITY;
+            uniform float time;
+
+            varying vec3 camera_position;
+            varying vec3 vertex_position;
+
+            // Hash function
+            float hash(vec2 p) {
+                p = 50.0 * fract(p * 0.3183099 + vec2(0.71, 0.113));
+                return -1.0 + 2.0 * fract(p.x * p.y * (p.x + p.y));
+            }
+
+            // Noise function
+            float noise(in vec2 p) {
+                vec2 i = floor(p);
+                vec2 f = fract(p);
+                vec2 u = f * f * (3.0 - 2.0 * f);
+                return mix(mix(hash(i + vec2(0.0, 0.0)), hash(i + vec2(1.0, 0.0)), u.x),
+                           mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);
+            }
+
+            float amplify(float value) {
+                float magic_number = 0.166504;
+                float output = 0.0;
+                value = clamp(value, 0.0, 1.0);
+                value = pow(value, 2.0);
+                output += pow(magic_number, 4.0) * value;
+                value = pow(value, 2.0);
+                output += magic_number * value;
+                value = pow(value, 2.0);
+                output += value;
+                return output;
+            }
+
+            float interpolate_noise(vec2 uv1, vec2 uv2) {
+                return smoothstep(-smoothness, smoothness, noise(uv1) - noise(uv2));
+            }
+
+            float random_wave(vec2 uv) {
+                vec2 uv_distort = noise(uv) * vec2(distort * 0.5);
+                vec2 uv1 = uv * scale + vec2(time * speed, time * speed - offset) + uv_distort;
+                vec2 uv2 = uv * scale + vec2(time * speed + 0.5, time * speed + offset) + uv_distort;
+                float interpolated_noise = interpolate_noise(uv1, uv2);
+                float intensity = 0.2 + clamp((0.5 - abs(interpolated_noise - 0.5)) * 1.5, 0.0, 1.0);
+                float wave = amplify(intensity);
+                return wave;
+            }
+
+            float ray_march(vec3 ray_origin, vec3 ray_direction, float start, float time_val) {
+                float density = 0.0;
+                float dist = start + STEP;
+
+                for (int i = 0; i < 500; i++) {  // Loop instead of while(true) to prevent infinite loop
+                    vec3 point = ray_origin + ray_direction * dist;
+                    if (clamp(point, vec3(-1.0), vec3(1.0)) != point) {
+                        break;
+                    }
+                    vec2 uv = vec2((point.x + 1.0) * 0.5, (point.z + 1.0) * 0.5);
+                    float wave_value = random_wave(uv);
+                    float height_factor = (1.0 - point.y) * 0.5;
+                    float point_density = BASE_DENSITY * STEP * height_factor * wave_value;
+                    density += point_density;
+                    dist += STEP;
+                    if (dist > 100.0) break;  // Safety break
+                }
+
+                return density;
+            }
+
+            void main() {
+                vec3 ray_origin = camera_position;
+                vec3 ray_direction = normalize(vertex_position - ray_origin);
+                float start_dist = length(camera_position - vertex_position);
+                float density = ray_march(ray_origin, ray_direction, start_dist, time);
+
+                vec3 albedo = color * density;
+                vec3 emission = color * density * emission_strength;
+                float alpha = density;
+
+                gl_FragColor = vec4(emission, alpha);  // Use emission for glow
+            }
+        `;
+
+        // Create material
+        const material = new THREE.ShaderMaterial({
+            uniforms: uniforms,
+            vertexShader: vertexShader,
+            fragmentShader: fragmentShader,
+            transparent: true,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false,
+            side: THREE.FrontSide  // Render front faces
+        });
+
+        // Create geometry and mesh
+        const geometry = new THREE.BoxGeometry(2, 2, 2);  // -1 to 1
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.scale.set(1000, 500, 1000);  // Make it large: wide, tall, deep
+        mesh.position.set(0, 250, 0);  // Position above
+        scene.add(mesh);
+
+        // Add a simple starry background for stunning effect
+        const starsGeometry = new THREE.BufferGeometry();
+        const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1 });
+        const starsVertices = [];
+        for (let i = 0; i < 10000; i++) {
+            const x = THREE.MathUtils.randFloatSpread(2000);
+            const y = THREE.MathUtils.randFloatSpread(2000);
+            const z = THREE.MathUtils.randFloatSpread(2000);
+            starsVertices.push(x, y, z);
+        }
+        starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starsVertices, 3));
+        const stars = new THREE.Points(starsGeometry, starsMaterial);
+        scene.add(stars);
+
+        // Animation loop
+        function animate(t = 0) {
+            requestAnimationFrame(animate);
+            uniforms.time.value = t / 1000;  // Time in seconds
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
