@@ -1,0 +1,65 @@
+⭐ 1. What is a Neural Network?
+A neural network is a machine that learns patterns from data.
+You give it:
+Input → data (images, numbers, text)
+Output → predictions (cat/dog, price, sentiment)
+Inside it has:
+weights
+biases
+activation functions
+These are adjusted during training until the network becomes smart.
+
+⭐ 2. The Smallest Neural Network (Perceptron)
+A perceptron does this:
+
+input → multiply by weight → add bias → apply activation → output
+Formula:
+output = activation(weight * input + bias)
+This is the heart of all deep learning.
+
+⭐ 3. Structure of a Neural Network
+It has 3 layers:
+1️⃣ Input Layer
+Receives data
+(e.g., 784 pixels of an image)
+2️⃣ Hidden Layer(s)
+Does the learning
+(multiple neurons)
+3️⃣ Output Layer
+Final prediction
+(e.g., dog/cat)
+
+⭐ 4. What are Weights?
+Think of weights like importance.
+Example:
+If weight = 0.9 → input is very important
+If weight = 0.01 → input is not important
+The model “learns” by adjusting weights.
+
+⭐ 5. What are Biases?
+Biases help the model shift predictions.
+If weights are the slope,
+bias is like adding an offset.
+output = weight * input + bias
+Without bias → the network is weak.
+
+⭐ 6. Forward Pass (How NN Makes Predictions)
+When you give input to the network:
+Multiply inputs by weights
+Add bias
+Apply activation
+Pass result to next layer
+Continue until final output
+This is called forward propagation.
+
+⭐ 7. What a Neural Network Actually Learns
+It learns the best weights and biases so that predictions are correct.
+Example:
+Image of digit “5” → Network learns shapes & patterns.
+
+⭐ 8. Where most beginners get confused
+Neural networks are NOT magic.
+They only do repeated steps:
+Multiply → Add → Activate → Compare → Adjust weights → Repeat.
+That's it.
+Deep learning = LOTS of layers doing this.
