@@ -1,0 +1,72 @@
+🧠 RNN (Recurrent Neural Networks)
+
+RNNs are designed for sequence data, where order matters.
+Examples:
+Text (sentences, reviews, chat)
+Time series (stock prices, weather)
+Speech/audio
+Video frames
+CNN → Good for images
+RNN → Good for sequences
+
+⭐ 1. Why Normal Neural Networks Fail for Sequences
+Traditional neural networks (MLP) think all inputs are independent.
+But sequences have memory.
+Example:
+Sentence: “I am going to the bank to withdraw cash.”
+The meaning of "bank" depends on previous words.
+MLP cannot remember this.
+RNN can.
+
+⭐ 2. What Makes RNN Special?
+RNN has a loop inside.
+This loop lets it remember past information.
+Formula:
+h_t = activation(Wx_t + Uh_(t-1) + b)
+Where:
+x_t → input at time step t
+h_(t-1) → previous hidden state
+h_t → current memory
+This “hidden state” carries memory across time.
+
+⭐ 3. Visual Explanation
+RNN unfolds like this:
+x1 --> [RNN] --> h1
+x2 --> [RNN] --> h2
+x3 --> [RNN] --> h3
+At each step:
+It reads input
+It remembers previous hidden state
+It produces output
+
+⭐ 4. Intuition (Very Simple)
+Imagine reading a sentence word by word.
+You don’t forget the previous words when reading the next.
+RNN works the same.
+
+⭐ 5. The Problem: Vanishing Gradient
+RNN has a major issue:
+👉 When sequences are long, gradients become extremely small.
+This means the network forgets what happened earlier.
+That’s why RNN struggles with:
+long sentences
+long time-series
+Solution → LSTM & GRU (Topic 7)
+
+⭐ 6. Where RNN is Still Useful
+Short text (sentences 5–10 words)
+Simple time-series
+Predict next number in sequence
+Character-level models (generate text character by character)
+But now LSTMs and Transformers are much better.
+
+⭐ 8. Real Use Case Example
+Sentiment analysis (positive/negative)
+Input sentence:
+"I love this movie"
+RNN processes:
+I
+love
+this
+movie
+It keeps updating memory after each word → final state gives sentiment.
