@@ -70,3 +70,13 @@ love
 this
 movie
 It keeps updating memory after each word → final state gives sentiment.
+
+✅ Hidden State in RNN:
+The hidden state in an RNN acts like the model’s memory.
+It:
+remembers information from previous time steps
+carries context from earlier inputs
+helps the RNN understand the sequence instead of treating each input separately
+So at each step:
+new_hidden = function(current_input + previous_hidden)
+This is how an RNN knows what came before in a sentence or a time series.
