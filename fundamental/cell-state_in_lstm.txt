@@ -53,3 +53,38 @@ hₙ = recent short-term memory
 cₙ = recent long-term memory
 And c_n is ALWAYS calculated using:
 forget gate + new info gate
+
+🧠 Understanding Each Gate:
+
+🔹 1. Forget Gate (What to remove?)
+Symbol: f_t
+Activation: Sigmoid (values between 0 and 1)
+0 → forget completely
+1 → keep completely
+Purpose:
+Decides which part of the old memory (c_{t-1}) to erase.
+✔ Example:
+Sentence: “The dog I saw yesterday was huge.”
+For sentiment analysis → "yesterday" gets forgotten.
+
+🔹 2. Input Gate (What to add?)
+Symbol: i_t
+Activation: Sigmoid
+Along with the candidate memory (ĉ_t), it decides what new information is added to the cell state.
+✔ Example:
+Sentence: “huge” → important word → input gate adds this to memory.
+
+🔹 3. Output Gate (What to show?)
+Symbol: o_t
+Activation: Sigmoid
+Controls what part of the cell state becomes the hidden state (h_t) output.
+✔ Example:
+At the end of reading a sentence → output gate decides the final sentiment vector.
+
+🌟 Combined LSTM Cell Visualization
+This image shows:
+Forget gate (left)
+Input gate (middle)
+Output gate (right)
+Cell state flowing through
+Hidden state being produced
