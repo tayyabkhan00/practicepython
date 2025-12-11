@@ -49,3 +49,53 @@ Class 2: x x x
 Important Terms
 Support Vectors → Points closest to boundary
 Kernel Trick → Converts non-linear data into linear form
+
+3. INTRO TO NEURAL NETWORKS
+3.1 What a Shallow Neural Network Computes
+A shallow network = 1 hidden layer.
+Diagram
+Input → [Hidden Layer] → Output
+Mathematical Form:
+Hidden layer:h=σ(W1​x+b1​)
+Output layer:y=σ(W2​h+b2​)
+Neural nets learn weights that turn inputs → useful features → predictions.
+
+4. TRAINING A NETWORK
+Training = finding best weights using loss functions + backpropagation + SGD.
+
+4.1 Loss Functions
+Tell how “wrong” the model is.
+Common Ones:
+MSE (Mean Squared Error) → Regression
+Cross-Entropy Loss → Classification
+
+4.2 Backpropagation
+Simple meaning:
+Backprop tells each weight how much it contributed to the error and how to update it.
+Steps (easy):
+Do forward pass → get prediction
+Compare with actual → compute loss
+Send error backward → compute gradients
+Update weights
+
+4.3 Stochastic Gradient Descent (SGD)
+SGD updates weights using:w=w−η⋅∂w/∂L​
+Where:
+η (eta) = learning rate
+L = loss
+gradient = direction of increasing error
+SGD uses one sample at a time, making it fast.
+
+5. Neural Networks as Universal Function Approximators
+The Universal Approximation Theorem
+A neural network with one hidden layer can approximate ANY continuous function.
+Meaning →
+Given enough neurons, a neural network can learn almost any pattern (image → label, audio → text, etc.).
+
+EXAM-ORIENTED SHORT NOTES
+✔ Perceptron vs Logistic Regression
+Perceptron	        Logistic Regression
+Hard output (0/1)	Probability output
+Step function	    Sigmoid function
+Not differentiable	Differentiable
+Cannot solve XOR	Can solve XOR with feature mapping
