@@ -131,3 +131,11 @@ Used for regression      	         Used for classification
 Measures squared error	             Measures probability error
 Penalizes large errors	             Penalizes wrong confident predictions
 Slower learning for classification	 Faster & stable learning
+
+⭐ 8. Short Answer (neural network):
+Short 6–8 line answer:
+A neural network is called a universal function approximator because a feed-forward network with at least one hidden layer
+and a non-linear activation function can approximate any continuous function to any degree of accuracy. This is known as the 
+Universal Approximation Theorem.The hidden layer neurons act as basic non-linear building blocks. By combining many neurons, 
+the network can represent highly complex and non-linear relationships between input and output.
+Therefore, neural networks can model almost any real-world problem such as classification, regression, speech, images, etc.
