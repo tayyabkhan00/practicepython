@@ -147,3 +147,9 @@ h=σ(W1​x+b1​)
 y=ϕ(W2​h+b2​)
 In training, backpropagation computes gradients of the loss and updates the weights using gradient descent.
 The hidden layer enables the network to learn non-linear relationships, making shallow networks powerful function approximators.
+
+| Model / Neuron Type     | Output            | Activation            | Purpose                     |
+| ----------------------- | ----------------- | --------------------- | --------------------------- |
+| **Logistic Regression** | Probability (0–1) | Sigmoid               | Binary classification       |
+| **Perceptron**          | Class (0 or 1)    | Step                  | Basic linear classifier     |
+| **Hidden-Layer Neuron** | Feature value     | ReLU / Tanh / Sigmoid | Builds deep neural networks |
