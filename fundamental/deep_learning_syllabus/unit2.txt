@@ -145,6 +145,110 @@ Advantages
  Automatically learns features
  Best for: Image classification, object detection, face recognition
 
+1. What is a CNN?
+A Convolutional Neural Network (CNN) is a deep learning model mainly used for image and spatial data processing.
+Unlike traditional neural networks, CNNs exploit spatial structure using convolution and pooling operations.
+
+2. Basic Architecture of CNN
+A typical CNN consists of:
+Input Layer
+Convolution Layer
+Activation Function (ReLU)
+Pooling Layer (Max-Pooling / Average-Pooling)
+Fully Connected Layer
+Output Layer (Softmax / Sigmoid)
+
+3. Convolution Layer (Brief)
+Applies filters (kernels) over the image.
+Extracts features like:
+edges
+corners
+textures
+shapes
+Mathematical idea:Feature Map=Input⊗Filter+Bias
+
+⭐ 4. Pooling Layer (IMPORTANT)
+What is Pooling?
+Pooling is a down-sampling technique that reduces the spatial size of feature maps.
+👉 It is applied after convolution + activation.
+Why Pooling is Used?
+Reduces computation
+Reduces number of parameters
+Prevents overfitting
+Makes model translation invariant
+Retains important features
+Types of Pooling
+Max Pooling (Most common)
+Average Pooling
+Global Average Pooling
+
+⭐ Max Pooling (Most Important for Exams)
+Definition
+Max pooling selects the maximum value from each region of the feature map.
+Working of Max Pooling
+Choose pool size (e.g., 2×2)
+Slide window across feature map
+Select max value from each region
+Output size becomes smaller
+Advantages of Max Pooling
+Preserves strongest features
+Reduces noise
+Faster computation
+Works well with ReLU
+Exam Points (Write This!)
+Max pooling reduces the spatial dimension while retaining dominant features, thus improving efficiency and robustness of CNNs.
+
+⭐ 5. Fully Connected Layer (VERY IMPORTANT)
+What is Fully Connected (FC) Layer?
+In a Fully Connected layer:
+Every neuron is connected to all neurons in the previous layer.
+It behaves like a traditional neural network layer.
+Purpose of FC Layer
+Combines all extracted features
+Performs final classification
+Learns non-linear combinations of features
+Working of FC Layer
+Feature maps are flattened into a vector
+Weighted sum is computed
+Activation function applied
+Output passed to final layer
+Mathematical form 
+        y=Wx+b
+Activation in FC Layer
+ReLU → hidden FC layers
+Softmax → multi-class classification
+Sigmoid → binary classification
+Why FC Layers are Placed at the End?
+Earlier layers → feature extraction
+FC layers → decision making
+Disadvantage
+Large number of parameters
+Risk of overfitting
+➡ often combined with Dropout
+
+⭐ 6. CNN Flow Summary (Write in Exams)
+Input Image → Convolution → ReLU → Pooling → Convolution → ReLU → Pooling → Flatten → Fully Connected → Output
+
+⭐ 7. Pooling vs Fully Connected Layer (Comparison)
+| Pooling Layer        | Fully Connected Layer   |
+| -------------------- | ----------------------- |
+| Reduces spatial size | Performs classification |
+| No learnable weights | Has learnable weights   |
+| Prevents overfitting | Prone to overfitting    |
+| Feature selection    | Decision making         |
+
+⭐ 8. Applications of CNN
+Image classification
+Face recognition
+Medical image analysis
+Object detection
+Autonomous vehicles
+
+Hidden Fully Connected (FC) layers: ReLU
+Output FC layer:
+Softmax → multi-class classification
+Sigmoid → binary classification
+
 Generative Adversarial Networks (GANs)
 GAN = Generator + Discriminator
 Generator (G)
@@ -159,3 +263,17 @@ GANs create:
  Art
  Deepfakes
  Image-to-image transformation
+
+Semi-Supervised Learning:
+Uses few labeled + many unlabeled examples.
+Methods
+ Self-training → model labels unlabeled data
+ Consistency Regularization → same input + noise = same output
+ GAN-based semi-supervised → discriminator also classifies labels
+Useful when:
+ Labels are expensive (medical images, legal data, etc.)
+
+Semi-Supervised Learning is a learning approach where a small labeled dataset and a large unlabeled dataset are used 
+together to train a model. It reduces labeling cost and improves model accuracy. Common techniques include self-training, 
+co-training, graph-based methods, and consistency regularization. It is widely used in applications like medical imaging 
+and speech recognition.
