@@ -7,3 +7,150 @@ Reduces computation
 Removes noise & redundancy
 Avoids curse of dimensionality
 Improves model performance & visualization
+
+2. Linear Methods
+(a) PCA – Principal Component Analysis
+Type: Unsupervised
+Goal: Maximize variance
+Idea:
+Converts correlated features → uncorrelated principal components
+Keeps components with maximum variance
+Steps (exam-friendly):
+Standardize data
+Compute covariance matrix
+Find eigenvalues & eigenvectors
+Select top-k eigenvectors
+Key Points:
+No class labels used
+Used in data compression, visualization
+Loses interpretability
+📌 Example: Reducing 100 features → 10 important components
+
+(b) LDA – Linear Discriminant Analysis
+Type: Supervised
+Goal: Maximize class separability
+Idea:
+Projects data so that different classes are far apart
+Minimizes within-class variance
+Key Points:
+Uses class labels
+Works well for classification
+Number of components ≤ (classes − 1)
+📌 PCA vs LDA (1-line exam)
+PCA maximizes variance, LDA maximizes class separation.
+
+3. Manifold Learning
+Idea: High-dimensional data lies on a low-dimensional manifold.
+Examples:
+Isomap
+LLE
+t-SNE
+UMAP
+📌 Used for non-linear dimensionality reduction
+
+4. Metric Learning
+Goal: Learn a distance function instead of features.
+Idea:
+Similar points → closer
+Dissimilar points → farther
+Used in:
+Face recognition
+Recommendation systems
+Clustering
+📌 Example: Siamese Networks
+
+5. Autoencoders (Neural Network Based DR)
+What is an Autoencoder?
+A neural network that learns to compress and reconstruct data.
+Structure:
+Encoder → Latent space → Decoder
+📌 Latent space = reduced dimensional representation
+Types:
+Basic Autoencoder
+Denoising Autoencoder
+Sparse Autoencoder
+Variational Autoencoder (VAE)
+Advantages:
+Non-linear DR
+Learns complex patterns
+Limitation:
+Needs large data
+
+6. Dimensionality Reduction in Deep Networks
+CNNs reduce dimension via:
+Pooling layers
+Strided convolutions
+Autoencoders used for:
+Feature extraction
+Pretraining
+
+7. Introduction to Convolutional Neural Networks (CNNs)
+Why CNN instead of ANN?
+Images have spatial structure
+CNN preserves local patterns
+Fewer parameters than ANN
+Core Components:
+Convolution Layer
+Activation (ReLU)
+Pooling Layer
+Fully Connected Layer
+
+8. CNN Architectures (Very Important)
+(a) AlexNet (2012)
+Key Features:
+First deep CNN success
+Used ReLU
+Introduced Dropout
+Won ImageNet 2012
+📌 8 layers (5 conv + 3 FC)
+
+(b) VGGNet
+Key Features:
+Uses 3×3 small filters
+Very deep (16 / 19 layers)
+Simple but heavy (large parameters)
+📌 Good accuracy but slow & memory heavy
+
+(c) Inception (GoogLeNet)
+Key Idea:
+Parallel filters (1×1, 3×3, 5×5)
+Efficient computation
+Uses 1×1 convolution for dimension reduction
+📌 Smart & efficient architecture
+
+(d) ResNet
+Key Innovation: Skip / Residual Connections
+Why important?
+Solves vanishing gradient
+Enables very deep networks (100+ layers)
+📌 Residual formula:
+Output = F(x) + x
+
+9. Training a ConvNet
+(a) Weight Initialization
+Xavier Initialization
+He Initialization (best for ReLU)
+📌 Prevents vanishing/exploding gradients
+(b) Batch Normalization
+Purpose:
+Normalize activations
+Faster training
+More stable gradients
+📌 Applied after convolution & before activation
+
+(c) Hyperparameter Optimization
+Important hyperparameters:
+Learning rate ⭐
+Batch size
+Number of layers
+Optimizer (SGD, Adam)
+Techniques:
+Grid Search
+Random Search
+Bayesian Optimization
+
+Ultra-Short Exam Summary (2–3 lines)
+
+Dimensionality reduction reduces feature space while preserving information. PCA and LDA are linear techniques, 
+autoencoders provide non-linear reduction. CNN architectures like AlexNet, VGG, Inception, and ResNet improve image 
+learning using convolution, pooling, and residual connections.
