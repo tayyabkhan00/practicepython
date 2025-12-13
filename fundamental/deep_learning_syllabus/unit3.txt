@@ -1,0 +1,9 @@
+DIMENSIONALITY REDUCTION & CONVOLUTIONAL NEURAL NETWORKS
+
+1. Dimensionality Reduction (Why & What?)
+Dimensionality Reduction means reducing the number of input features without losing important information.
+Why needed?
+Reduces computation
+Removes noise & redundancy
+Avoids curse of dimensionality
+Improves model performance & visualization
