@@ -32,11 +32,89 @@ Gives false confidence
 How Regularization Fixes Overfitting
 Regularization controls the model’s freedom.
 Common regularization methods (simple idea):
-L1 / L2 Regularization → stop weights from becoming too large
+L1 / L2 Regularization → stop weights from becoming too large or
+L1 regularization → makes weights sparse
+L2 regularization → reduces weight magnitude
 Dropout → randomly turn off neurons so model can’t depend on only a few
 Early Stopping → stop training before memorization starts
-Data Augmentation → show more varied data
+Data Augmentation → show more varied data or increase dataset size
 
 One-Line Exam Definitions
 Overfitting: When a model performs well on training data but poorly on new data.
 Regularization: Techniques used to reduce overfitting by controlling model complexity.
+
+Batch-normalization:
+Batch Normalization is a technique used to normalize layer activations for each mini-batch to reduce internal 
+covariate shift. It normalizes the mean and variance of activations and then applies learnable scale and shift parameters. 
+Batch Normalization improves training speed, stabilizes gradients, allows higher learning rates, and also acts as a 
+regularizer.
+or we can say that, Batch Normalization is a technique used in deep neural networks to normalize the activations of a
+layer for each mini-batch, so that they have zero mean and unit variance, followed by learnable scaling and shifting.
+👉 Introduced by Ioffe and Szegedy (2015).
+
+Why Batch Normalization is Needed
+Deep networks suffer from:
+(a) Internal Covariate Shift
+Distribution of activations changes as network parameters update.
+Slows training and causes instability.
+(b) Problems Without BatchNorm
+Slow convergence
+Vanishing/exploding gradients
+High sensitivity to learning rate
+Overfitting
+BatchNorm stabilizes training.
+
+Placement of Batch Normalization in a Network
+Correct Placement (Most Common)
+Linear / Conv → BatchNorm → Activation (ReLU)
+
+Why before activation?
+Keeps normalized distribution before non-linearity
+Improves gradient flow
+
+Batch Normalization During Training vs Testing
+During Training
+Mean and variance computed from mini-batch
+Running averages are maintained
+During Testing (Inference)
+Use running mean and running variance
+No batch dependency → stable predictions
+
+Backpropagation in Batch Normalization
+Gradients flow through:
+normalization step
+scaling (γ)
+shifting (β)
+γ and β are trained using gradient descent.
+BatchNorm reduces vanishing gradient problem.
+(👉 You don’t need full derivation unless explicitly asked.)
+
+Advantages of Batch Normalization
+(Highly Important for Exams)
+✅ Faster convergence
+✅ Allows higher learning rates
+✅ Reduces vanishing/exploding gradients
+✅ Acts as regularizer
+✅ Less sensitive to initialization
+✅ Improves generalization
+
+Disadvantages / Limitations
+❌ Depends on batch size
+❌ Performs poorly with very small batches
+❌ Extra computation
+❌ Less effective in RNNs (LayerNorm preferred)
+
+Batch Normalization vs Other Normalization Techniques:
+| Technique    | Normalization Scope | Used In            |
+| ------------ | ------------------- | ------------------ |
+| BatchNorm    | Across batch        | CNNs, DNNs         |
+| LayerNorm    | Across features     | Transformers, RNNs |
+| InstanceNorm | Per sample          | Style transfer     |
+| GroupNorm    | Groups of channels  | Small batch CNNs   |
+
+Batch Normalization in CNNs:
+1.Applied per feature map
+2.Mean and variance computed over:
+ -batch size
+ -spatial dimensions
+This preserves spatial structure.
