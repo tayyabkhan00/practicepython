@@ -1,0 +1,42 @@
+Regularization :
+
+Regularization is a technique used to stop a model from memorizing data and instead help it learn properly.
+👉 Think of it like this:
+A good student understands concepts
+A bad student memorizes answers
+Regularization makes the model a good student 👍
+It adds rules or limits so the model does not become too complex.
+
+What is Overfitting?
+Overfitting happens when a model:
+Learns the training data too well
+But fails on new (unseen) data
+📌 The model remembers noise and small details that are not actually important.
+
+Real-Life Example
+Imagine preparing for an exam:
+You memorize past question papers → you score high on practice tests
+In the real exam, questions change → you fail
+👉 This is overfitting.
+
+In Machine Learning Terms
+Training accuracy → very high
+Testing accuracy → low
+This means the model has overfitted.
+
+Why Overfitting is Bad
+Model does not generalize
+Performs poorly in real-world use
+Gives false confidence
+
+How Regularization Fixes Overfitting
+Regularization controls the model’s freedom.
+Common regularization methods (simple idea):
+L1 / L2 Regularization → stop weights from becoming too large
+Dropout → randomly turn off neurons so model can’t depend on only a few
+Early Stopping → stop training before memorization starts
+Data Augmentation → show more varied data
+
+One-Line Exam Definitions
+Overfitting: When a model performs well on training data but poorly on new data.
+Regularization: Techniques used to reduce overfitting by controlling model complexity.
