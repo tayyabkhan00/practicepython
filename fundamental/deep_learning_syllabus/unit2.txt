@@ -74,19 +74,19 @@ Improves gradient flow
 
 Batch Normalization During Training vs Testing
 During Training
-Mean and variance computed from mini-batch
-Running averages are maintained
+  Mean and variance computed from mini-batch
+  Running averages are maintained
 During Testing (Inference)
-Use running mean and running variance
-No batch dependency → stable predictions
+  Use running mean and running variance
+  No batch dependency → stable predictions
 
 Backpropagation in Batch Normalization
-Gradients flow through:
-normalization step
-scaling (γ)
-shifting (β)
-γ and β are trained using gradient descent.
-BatchNorm reduces vanishing gradient problem.
+1.Gradients flow through:
+ -normalization step
+ -scaling (γ)
+ -shifting (β)
+2.γ and β are trained using gradient descent.
+3.BatchNorm reduces vanishing gradient problem.
 (👉 You don’t need full derivation unless explicitly asked.)
 
 Advantages of Batch Normalization
@@ -118,3 +118,17 @@ Batch Normalization in CNNs:
  -batch size
  -spatial dimensions
 This preserves spatial structure.
+
+One-Line Exam Facts:
+Introduced in 2015
+Parameters: γ and β
+Reduces internal covariate shift
+Often removes need for dropout
+Used heavily in CNNs
+
+VC Dimension and Neural Nets (Exam Definition)
+VC Dimension = a measure of model capacity (how many patterns it can "shatter").
+Key points
+Higher VC dimension → more complex model
+Deep networks have very high VC dimension
+High VC → more risk of overfitting unless properly regularized
