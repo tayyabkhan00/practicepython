@@ -210,3 +210,74 @@ Increased retransmissions
 | Scalability  | Many nodes                  | Congestion     | Clustering       |
 | Bandwidth    | Limited spectrum            | Delay          | Aggregation      |
 | Interference | Shared spectrum             | Packet loss    | Channel hopping  |
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MAC Protocol Survey (Medium Access Control) in IoT
+
+MAC protocols in IoT control access to the shared wireless medium to reduce collisions and save energy. Due to resource 
+constraints, IoT MAC protocols emphasize low power consumption, scalability, and reliability. Contention-based protocols 
+like CSMA offer flexibility but suffer from collisions, while schedule-based protocols like TDMA provide collision-free 
+communication at the cost of synchronization overhead. Energy-efficient MAC protocols such as S-MAC and T-MAC introduce 
+sleep–wake cycles to extend network lifetime. IEEE 802.15.4 is the most widely used MAC standard for IoT applications.
+
+🔹 What is MAC Protocol?
+MAC protocol controls how multiple IoT nodes access the same wireless channel without interfering with each other.
+👉 It answers:
+Who transmits?
+When to transmit?
+How to avoid collision?
+How to save energy?
+
+🔑 Design Requirements of MAC Protocols (IoT)
+IoT MAC protocols must:
+Minimize energy consumption
+Reduce collision
+Support large number of nodes
+Provide low latency
+Handle node mobility & failures
+
+📂 Classification of MAC Protocols
+
+1️⃣ Contention-Based MAC Protocols
+Nodes compete for the channel.
+🔹 Example: CSMA / CSMA-CA
+Working:
+Node listens to channel
+If free → transmit
+If busy → wait & retry
+Advantages:
+✔ Simple
+✔ Flexible
+✔ No strict synchronization
+Disadvantages:
+❌ Collisions
+❌ Idle listening (battery drain)
+❌ Not good for dense IoT networks
+📌 Used in: Wi-Fi, early IoT systems
+
+2️⃣ Schedule-Based MAC Protocols
+Transmission is pre-scheduled.
+🔹 Example: TDMA
+Working:
+Time divided into slots
+Each node transmits in its slot only
+Advantages:
+✔ No collision
+✔ Energy efficient
+✔ Predictable delay
+Disadvantages:
+❌ Synchronization overhead
+❌ Not flexible for dynamic networks
+📌 Used in: Industrial IoT, sensor networks
+
+3️⃣ Hybrid MAC Protocols
+Combines contention + scheduling
+🔹 Example: Z-MAC
+CSMA at low traffic
+TDMA at high traffic
+Advantages:
+✔ Adaptive
+✔ Efficient under varying load
+Disadvantages:
+❌ Complex design
+📌 Best choice for modern IoT
+
