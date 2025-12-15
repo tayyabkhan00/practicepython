@@ -149,8 +149,7 @@ Grid Search
 Random Search
 Bayesian Optimization
 
-Ultra-Short Exam Summary (2–3 lines)
-
+Ultra-Short Exam Summary:
 Dimensionality reduction reduces feature space while preserving information. PCA and LDA are linear techniques, 
 autoencoders provide non-linear reduction. CNN architectures like AlexNet, VGG, Inception, and ResNet improve image 
 learning using convolution, pooling, and residual connections.
