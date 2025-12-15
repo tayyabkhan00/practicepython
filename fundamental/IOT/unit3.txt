@@ -125,3 +125,88 @@ Sensor deployment affects coverage and connectivity
 Node discovery helps nodes join the network
 Data aggregation reduces redundant data
 Data dissemination controls data flow direction
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Wireless Medium Access Issues in IoT
+
+Wireless medium access in IoT faces challenges such as collision, hidden node problem, limited bandwidth, high energy 
+consumption, scalability issues, and interference. Since IoT devices are battery-powered and deployed in large numbers, 
+efficient medium access mechanisms are required. These issues are addressed using energy-efficient MAC protocols, 
+time-slot scheduling, duty cycling, and collision avoidance techniques.
+
+What is Wireless Medium Access?
+In IoT, many sensor nodes share the same wireless channel (air).
+Medium Access defines how nodes decide when to transmit data so that:
+Data is not lost
+Energy is saved
+Network remains stable
+
+1. Collision Problem
+What is Collision?
+When two or more nodes transmit at the same time, their signals overlap → data gets corrupted.
+
+Why is collision serious in IoT?
+Sensors have low power
+Retransmission wastes battery
+Reduces network lifetime
+Example:
+Node A and Node B send data simultaneously to Sink → ❌ both packets lost
+
+Impact:
+Increased delay
+More energy consumption
+Lower throughput
+
+2. Hidden Node Problem 
+What is Hidden Node?
+Two nodes cannot hear each other, but both send data to the same receiver, causing collision.
+Example:
+Node A ----> Sink <---- Node C
+(A and C cannot hear each other)
+
+Why common in IoT?
+Low transmission power
+Short radio range
+Dense sensor deployment
+
+3. Exposed Node Problem
+What is Exposed Node?
+A node unnecessarily waits even though it could transmit safely.
+Example:
+Node B hears Node A transmitting
+But B’s transmission wouldn’t cause collision
+Still B waits → ❌ underutilization
+
+4. Energy Consumption Issue (Most Critical in IoT)
+Why energy is a big issue?
+IoT sensors run on battery
+Replacement is often impossible (forests, pipelines)
+
+5. Scalability Issue
+What is Scalability?
+Ability to support thousands or millions of nodes
+
+6. Bandwidth Limitation
+Why limited bandwidth?
+ISM bands are shared
+Low data-rate radios used to save energy
+
+7. Interference Issue
+Sources of interference:
+Wi-Fi
+Bluetooth
+Microwave ovens
+Other IoT networks
+Effect:
+Signal distortion
+Packet loss
+Increased retransmissions
+
+| Issue        | Cause                       | Effect         | Solution         |
+| ------------ | --------------------------- | -------------- | ---------------- |
+| Collision    | Simultaneous transmission   | Data loss      | TDMA, CSMA       |
+| Hidden Node  | Nodes can’t hear each other | Collision      | RTS/CTS          |
+| Energy Drain | Idle listening              | Short lifetime | Sleep scheduling |
+| Scalability  | Many nodes                  | Congestion     | Clustering       |
+| Bandwidth    | Limited spectrum            | Delay          | Aggregation      |
+| Interference | Shared spectrum             | Packet loss    | Channel hopping  |
