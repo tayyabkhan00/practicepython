@@ -65,3 +65,16 @@ Deep learning models used:
 RNN
 LSTM
 Transformers
+
+5. Word2Vec
+What is Word2Vec?
+Word2Vec converts words into numbers (vectors) such that:
+Similar words → Similar vectors
+Example:
+king - man + woman ≈ queen
+Two architectures:
+CBOW – Predict word from context
+Skip-gram – Predict context from word
+Why important?
+Captures semantic meaning
+Used in search engines, chatbots
