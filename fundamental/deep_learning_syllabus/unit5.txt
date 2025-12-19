@@ -78,3 +78,17 @@ Skip-gram – Predict context from word
 Why important?
 Captures semantic meaning
 Used in search engines, chatbots
+
+6. Joint Detection
+What is Joint Detection?
+Detecting multiple things at the same time.
+Examples:
+Face + Emotion
+Object + Action
+Person + Pose
+Why needed?
+Real-world problems involve many tasks together
+Improves accuracy using shared features
+Application:
+Autonomous driving
+Surveillance systems
