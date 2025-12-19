@@ -4,7 +4,6 @@ OPTIMIZATION AND GENERALIZATION
 Optimization in deep learning means finding the best weights (parameters) that minimize the loss function.
 
 1. Optimization in Deep Learning
-
 Optimization = how a neural network learns best weights
 Goal: Minimize loss function (error between predicted & actual output)
 We update weights using gradients (from backpropagation)
@@ -18,7 +17,6 @@ Optimization in deep learning is the process of adjusting model parameters to mi
 gradient-based algorithms like SGD and Adam.
 
 2. Non-Convex Optimization for Deep Networks
-
 Deep learning optimization is a non-convex problem because deep neural networks use multiple layers and non-linear 
 activation functions, resulting in complex loss surfaces with many local minima and saddle points. This makes 
 optimization challenging and prevents guarantees of global minima. However, stochastic gradient descent, random 
@@ -46,7 +44,6 @@ Minima, saddle points, and flat regions are points on the loss surface, whereas 
 loss function at those points that guides weight updates.
 
 3. Stochastic Optimization
-
 Stochastic optimization updates model parameters using randomly selected samples or mini-batches instead of the full dataset.
 
 Instead of full data → use mini-batches
@@ -77,7 +74,6 @@ Due to the non-convex nature of deep learning loss functions, stochastic optimiz
 preferred as they provide efficient and scalable approximate solutions.
 
 4. Generalization in Neural Networks
-
 Generalization = performing well on unseen data
 
 Problems
@@ -93,3 +89,41 @@ Batch normalization
 
 Exam Statement:
 A model generalizes well if it performs equally well on training and test data.
+
+5. Spatial Transformer Networks (STN)
+STN allows the network to learn spatial transformations automatically.
+
+What it does
+Rotation
+Scaling
+Cropping
+Translation
+
+Used in
+Image recognition
+Object detection
+Components
+Localization network-Looks at image,Learns where and how to transform
+Grid generator-Creates spatial transformation grid
+Sampler-Applies transformation to image
+
+Exam 5 marks:
+Spatial Transformer Networks improve invariance by allowing neural networks to learn spatial transformations internally.
+
+What is a Spatial Transformer Network (STN)?
+STN = a module that learns to fix spatial problems automatically
+It transforms the input image so the object becomes:
+centered
+aligned
+properly scaled
+Simple meaning:
+STN teaches the network “how to look” at the image
+Spatial = anything related to shape, position, scale, rotation in an image
+
+💡 Final Memory Trick
+S P A C E
+Size
+Position
+Angle
+Cropping
+Exact location
