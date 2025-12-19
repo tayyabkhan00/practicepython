@@ -52,3 +52,16 @@ Voice assistants (Google Assistant)
 Music generation
 Key idea:
 👉 Models audio sample-by-sample using deep neural networks.
+
+4. Natural Language Processing (NLP)
+What is NLP?
+NLP allows machines to understand human language.
+Tasks in NLP:
+Text classification
+Sentiment analysis
+Translation
+Chatbots
+Deep learning models used:
+RNN
+LSTM
+Transformers
