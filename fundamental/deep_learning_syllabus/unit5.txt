@@ -1,0 +1,16 @@
+Case Study and Applications
+
+1. ImageNet
+What is ImageNet?
+ImageNet is a very large image dataset used to train and test deep learning models.
+Contains 14+ million images
+Images are divided into 1000 classes (dog, cat, car, etc.)
+Why is ImageNet important?
+Made deep learning popular
+Used to train famous CNN models:
+AlexNet
+VGG
+ResNet
+Helps models learn features like edges, shapes, textures
+Exam line:
+👉 ImageNet is a large-scale labeled image dataset used to train and benchmark convolutional neural networks.
