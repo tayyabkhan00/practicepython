@@ -13,3 +13,29 @@ Adam – most popular (adaptive + momentum)
 Exam Point (5 marks):
 Optimization in deep learning is the process of adjusting model parameters to minimize the loss function using 
 gradient-based algorithms like SGD and Adam.
+
+2. Non-Convex Optimization for Deep Networks
+Deep learning optimization is a non-convex problem because deep neural networks use multiple layers and non-linear 
+activation functions, resulting in complex loss surfaces with many local minima and saddle points. This makes 
+optimization challenging and prevents guarantees of global minima. However, stochastic gradient descent, random 
+initialization, and over-parameterization enable models to escape saddle points and converge to sufficiently good solutions.
+Deep learning loss surfaces are non-convex ❌
+That means:
+Many local minima
+Saddle points (flat regions)
+No guarantee of global minimum
+
+Why still works?
+Large networks → many good-enough minima
+SGD noise helps escape saddle points
+
+Key Challenges
+Vanishing gradients
+Exploding gradients
+Slow convergence
+
+Exam Tip (10 marks):
+Deep networks involve non-convex optimization problems, making training difficult due to multiple local minima and 
+saddle points.
+Minima, saddle points, and flat regions are points on the loss surface, whereas the gradient is the slope of the 
+loss function at those points that guides weight updates.
