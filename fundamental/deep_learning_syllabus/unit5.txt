@@ -14,3 +14,27 @@ ResNet
 Helps models learn features like edges, shapes, textures
 Exam line:
 👉 ImageNet is a large-scale labeled image dataset used to train and benchmark convolutional neural networks.
+
+2. Detection (Object Detection)
+What is Detection?
+Detection means:
+Finding objects
+Locating them
+Labeling them
+Example:
+Image → person, car, dog + bounding boxes
+
+Difference:
+Classification → What is in image?
+Detection → What + Where?
+
+Popular models:
+R-CNN
+Faster R-CNN
+YOLO
+SSD
+
+Applications:
+Self-driving cars
+Surveillance
+Face detection
