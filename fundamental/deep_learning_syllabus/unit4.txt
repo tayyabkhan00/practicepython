@@ -127,3 +127,26 @@ Position
 Angle
 Cropping
 Exact location
+
+Easy Visual Imagination 🧠
+Imagine this image:
+🖼️ A cat is rotated and in a corner
+Without STN:
+CNN struggles
+With STN:
+STN rotates + centers cat
+CNN easily recognizes it
+So:
+Input Image → STN → Cleaned Image → CNN
+
+6. Recurrent Neural Networks (RNN)
+RNNs are designed for sequential data.
+Examples
+Text
+Speech
+Time series
+Key Feature
+Has memory (previous state affects current output)
+Problem
+Vanishing gradient
+Equation:ht​=f(ht−1​,xt​)
