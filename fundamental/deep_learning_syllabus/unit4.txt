@@ -198,3 +198,13 @@ Robotics
 Self-driving cars
 Exam Definition:
 Deep Reinforcement Learning uses deep neural networks to approximate policies and value functions in reinforcement learning.
+
+11. Computational & Artificial Neuroscience
+Computational Neuroscience
+Mathematical models of brain neurons
+Inspired neural models
+Artificial Neuroscience
+Artificial neural networks
+Inspired by biological brains
+Connection
+Deep learning models are inspired by biological neural systems but simplified for computation.
