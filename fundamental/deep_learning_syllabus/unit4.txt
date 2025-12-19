@@ -61,3 +61,35 @@ Mini-batch SGD
 Adam, RMSProp
 Formula (not mandatory but useful):θ=θ−η∇L(θ)
 Stochastic optimization updates parameters using a random subset of training data, improving speed and scalability.
+
+✅Why Noise is GOOD in Stochastic Optimization?
+Noise = randomness in gradient updates.
+Benefits:
+Helps escape local minima
+Escapes saddle points
+Leads to better generalization
+👉 Deterministic optimization may get stuck
+👉 Stochastic optimization explores better
+
+Strong Exam Line (10/10):
+
+Due to the non-convex nature of deep learning loss functions, stochastic optimization methods such as SGD and Adam are 
+preferred as they provide efficient and scalable approximate solutions.
+
+4. Generalization in Neural Networks
+
+Generalization = performing well on unseen data
+
+Problems
+Overfitting → memorizes training data
+Underfitting → model too simple
+
+Techniques to Improve Generalization
+Regularization (L1, L2)
+Dropout
+Early stopping
+Data augmentation
+Batch normalization
+
+Exam Statement:
+A model generalizes well if it performs equally well on training and test data.
