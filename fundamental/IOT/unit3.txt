@@ -496,3 +496,114 @@ Dynamic topology
 
 Relation Between Deployment & Discovery (Exam Gold ✨)
 After deployment, node discovery helps sensors find neighbors, form routes, and start communication.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🔹 Data Aggregation & Dissemination in IoT
+
+1️⃣ What is Data Aggregation?
+Definition:
+Data aggregation is the process of collecting data from multiple sensor nodes and combining it into a meaningful form 
+before sending it to the sink/base station.
+Why aggregation is needed?
+Sensors generate huge redundant data
+Wireless transmission consumes maximum energy
+Bandwidth is limited
+👉 Aggregation reduces data size → saves energy → increases network lifetime
+
+2️⃣ Types of Data Aggregation
+🔸 1. Centralized Aggregation
+All sensor data sent directly to sink
+Sink aggregates data
+✔ Simple
+❌ High energy consumption
+❌ Not scalable
+
+🔸 2. In-network Aggregation
+Data aggregated inside the network
+Intermediate nodes combine data
+✔ Energy efficient
+✔ Scalable
+✔ Most common in IoT
+Example:
+Temperature sensors → average computed by cluster head → sent to sink
+
+🔸 3. Tree-based Aggregation
+Nodes form a routing tree
+Data flows from leaves → root
+✔ Organized
+❌ Tree failure affects network
+
+🔸 4. Cluster-based Aggregation
+Network divided into clusters
+Cluster Head (CH) aggregates data
+✔ Reduces transmissions
+✔ Used in LEACH protocol
+
+3️⃣ Aggregation Functions (Very Important for Exams)
+Common operations:
+Sum
+Average
+Min / Max
+Count
+Variance
+📌 Example:
+10 sensors → {28, 29, 30}
+Aggregated value → Avg = 29°C
+
+4️⃣ Data Aggregation Challenges
+Data accuracy loss
+Delay
+Security issues (false data injection)
+Faulty nodes
+Synchronization
+👉 Trade-off between energy efficiency and data precision
+
+5️⃣ What is Data Dissemination?
+Definition:
+Data dissemination is the process of delivering data or queries to relevant nodes in an IoT network.
+👉 It answers:
+Who should get the data?
+When?
+How?
+
+6️⃣ Data Dissemination Models
+🔹 1. Query-based Dissemination
+Sink sends query
+Sensors respond
+📌 Example:
+“Send temperature where value > 40°C”
+✔ Efficient
+❌ Delay in response
+
+🔹 2. Event-based Dissemination
+Data sent when event occurs
+📌 Example:
+Fire detected → alert sent
+✔ Real-time
+✔ Energy efficient
+
+🔹 3. Periodic Dissemination
+Sensors send data at fixed intervals
+📌 Example:
+Every 10 minutes temperature update
+✔ Simple
+❌ Redundant data
+
+🔹 4. Hybrid Dissemination
+Combination of query + event + periodic
+✔ Flexible
+✔ Used in smart systems
+
+7️⃣ Data Dissemination Techniques
+🔸 Flooding
+Data sent to all nodes
+✔ Simple
+❌ Energy waste
+❌ Duplicate packets
+🔸 Gossiping
+Node sends data to random neighbor
+✔ Reduces flooding problem
+❌ Delay
+🔸 Negotiation-based
+Nodes advertise metadata before sending data
+✔ Avoids redundancy
+✔ Energy efficient

@@ -12,7 +12,7 @@ tanh = np.tanh(x)
 print(relu)
 print(tanh)
 print(sigmoid)
-'''
+
 # Softmax works on a vector, not a single x
 vec = np.array([1.0, 2.0, 3.0, 4.0])
 softmax = np.exp(vec) / np.sum(np.exp(vec))
@@ -26,7 +26,7 @@ plt.title("Activation Functions")
 plt.legend()
 plt.grid(True)
 plt.show()
-
+'''
 # Plot softmax separately
 plt.figure(figsize=(6, 4))
 plt.bar(range(len(vec)), softmax)
