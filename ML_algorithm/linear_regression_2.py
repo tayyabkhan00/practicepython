@@ -35,6 +35,14 @@ print("Intercept (b value):", model.intercept_)
 # -----------------------------
 # 5. Make a prediction
 # -----------------------------
+new_house = pd.DataFrame(
+    [[2200, 3, 12]],
+    columns=["area", "bedrooms", "age"]
+)
+
+predicted_price = model.predict(new_house)
+print("Predicted Price:", predicted_price[0])
+# Alternatively, using numpy array for prediction:
 new_house = np.array([[2200, 3, 12]])  
 predicted_price = model.predict(new_house)
 
