@@ -83,3 +83,23 @@ model.predict(new_car)
 
 
 print("🚗 Predicted Price for New Car:", predicted_price[0])
+
+# ------------------------------------
+# 9. Visualization (Optional)
+# ------------------------------------
+import plotly.express as px
+
+plot_df = pd.DataFrame({
+    "Actual Price": y_test.values,
+    "Predicted Price": y_pred
+})
+
+fig = px.scatter(
+    plot_df,
+    x="Actual Price",
+    y="Predicted Price",
+    title="Actual vs Predicted Car Prices (Linear Regression)",
+    trendline="ols"
+)
+
+fig.show()
