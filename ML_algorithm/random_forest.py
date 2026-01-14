@@ -33,3 +33,24 @@ model.fit(X, y)
 
 print(model.predict([[30]]))  # younger person
 print(model.predict([[50]]))  # older person
+
+# ---------------------additional features---------------------
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Data
+X = [[25, 0], [30, 1], [35, 2], [40, 2], [45, 1]]
+y = [0, 0, 1, 1, 1]   # 0=No, 1=Yes
+
+# Split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Model
+model = RandomForestClassifier(n_estimators=100)
+model.fit(X_train, y_train)
+
+# Predict
+y_pred = model.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
