@@ -58,3 +58,26 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 
 print("Accuracy:", accuracy_score(y_test, y_pred))
+
+
+# Regression Example
+
+
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.model_selection import train_test_split
+
+# Sample data
+X = [[500], [800], [1000], [1200], [1500]]
+y = [50, 80, 100, 120, 150]
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Model
+model = DecisionTreeRegressor(max_depth=3)
+model.fit(X_train, y_train)
+
+# Predict
+prediction = model.predict([[1100]])
+print("Predicted Price:", prediction)
+
