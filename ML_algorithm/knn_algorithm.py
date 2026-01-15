@@ -35,3 +35,5 @@ model = KNeighborsClassifier(n_neighbors=3)
 model.fit(X, y)
 
 print(model.predict([[55]]))
+
+
