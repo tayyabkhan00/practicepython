@@ -1,13 +1,16 @@
-# gemini pro chat completion example
+"""# gemini pro chat completion example
 import google.generativeai as genai
 import os
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-model = genai.GenerativeModel("models/gemini-pro-latest")
+genai.configure(
+    api_key=os.getenv("google api key")  
+    )
+
+model = genai.GenerativeModel("models/gemini-1.5-flash")
 
 response = model.generate_content("Give 5 insights from sales data.")
 print(response.text)
-
+"""
 
 # open ai chat completion example
 from openai import OpenAI

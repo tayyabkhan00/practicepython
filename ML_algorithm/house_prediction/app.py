@@ -87,11 +87,15 @@ if st.button("Predict Price"):
         if location in columns:
             x[columns.index(location)] = 1
 
-        price = model.predict([x])[0]
+        import pandas as pd
+        x_df = pd.DataFrame([x], columns=columns)
+
+        price = model.predict(x_df)[0]
 
         st.success(f"💰 Estimated Price: ₹ {round(price, 2)} Lakhs")
 
     except Exception as e:
         st.error("❌ Prediction failed")
         st.code(str(e))
+
 
